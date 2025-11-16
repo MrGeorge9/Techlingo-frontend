@@ -251,33 +251,33 @@ return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-slate-900 dark:to-gray-900">
         {/* Header */}
         <nav className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700/50 shadow-lg">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between h-20">
-            <div className="flex items-center space-x-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16 sm:h-20">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <img
                 src="/assets/logo-light.png"
                 alt="Tech Lingo"
-                className="h-10 dark:hidden"
+                className="h-8 sm:h-10 dark:hidden"
               />
               <img
                 src="/assets/logo-dark.png"
                 alt="Tech Lingo"
-                className="h-10 hidden dark:block"
+                className="h-8 sm:h-10 hidden dark:block"
               />
               <div className="flex items-center space-x-2">
                 <span className="text-gray-400">|</span>
-                <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">Admin</span>
+                <span className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100">Admin</span>
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <div className="hidden sm:block text-sm text-gray-600 dark:text-gray-400">
                 Prihlásený: <span className="font-medium text-gray-900 dark:text-gray-100">{user?.email}</span>
               </div>
-              <Button variant="secondary" onClick={() => navigate('/')}>
+              <Button variant="secondary" size="sm" onClick={() => navigate('/')} className="hidden sm:inline-flex">
                 Hlavná stránka
               </Button>
-              <Button variant="secondary" onClick={handleLogout}>
+              <Button variant="secondary" size="sm" onClick={handleLogout}>
                 Odhlásiť sa
               </Button>
             </div>
@@ -286,7 +286,7 @@ return (
       </nav>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         {/* Success Message */}
         {successMessage && (
           <div className="mb-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
@@ -300,17 +300,17 @@ return (
         )}
 
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
             Admin Dashboard
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             Spravujte termíny a kategórie slovníka
           </p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -377,11 +377,11 @@ return (
         </div>
 
         {/* Tabs */}
-        <div className="mb-6 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex space-x-8">
+        <div className="mb-6 border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
+          <div className="flex space-x-4 sm:space-x-8 min-w-max">
             <button
               onClick={() => setActiveTab('terms')}
-              className={`pb-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+              className={`pb-3 sm:pb-4 px-1 border-b-2 font-medium text-xs sm:text-sm transition-colors whitespace-nowrap ${
                 activeTab === 'terms'
                   ? 'border-primary-500 text-primary-600 dark:text-primary-400'
                   : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300'
@@ -392,7 +392,7 @@ return (
 
             <button
               onClick={() => setActiveTab('languages')}
-              className={`pb-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+              className={`pb-3 sm:pb-4 px-1 border-b-2 font-medium text-xs sm:text-sm transition-colors whitespace-nowrap ${
                 activeTab === 'languages'
                   ? 'border-primary-500 text-primary-600 dark:text-primary-400'
                   : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300'
@@ -402,7 +402,7 @@ return (
             </button>
             <button
               onClick={() => setActiveTab('categories')}
-              className={`pb-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+              className={`pb-3 sm:pb-4 px-1 border-b-2 font-medium text-xs sm:text-sm transition-colors whitespace-nowrap ${
                 activeTab === 'categories'
                   ? 'border-primary-500 text-primary-600 dark:text-primary-400'
                   : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300'
@@ -417,19 +417,20 @@ return (
         {activeTab === 'terms' && (
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
                   Zoznam termínov
                 </h2>
                 <Button
                   variant="primary"
+                  size="sm"
                   onClick={() => setShowAddModal(true)}
-                  className="flex items-center space-x-2"
+                  className="flex items-center justify-center space-x-2"
                 >
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                   </svg>
-                  <span>Pridať termín</span>
+                  <span className="text-sm sm:text-base">Pridať termín</span>
                 </Button>
               </div>
               <Input
@@ -437,7 +438,7 @@ return (
                 placeholder="Hľadať termín..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full"
+                className="w-full text-sm sm:text-base"
               />
             </CardHeader>
             <CardContent>
@@ -470,25 +471,25 @@ return (
                 )}
               </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {filteredTerms.map((term) => (
                   <div
                     key={term.id}
-                    className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700"
+                    className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700"
                   >
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3 mb-2 gap-1">
+                          <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">
                             {term.translations.sk?.term || ''}
                           </h3>
-                          <span className="text-gray-400">→</span>
-                          <p className="text-gray-600 dark:text-gray-400">{term.translations.en?.term || ''}</p>
+                          <span className="hidden sm:inline text-gray-400">→</span>
+                          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 truncate">{term.translations.en?.term || ''}</p>
                         </div>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-2 sm:mb-3 line-clamp-2">
                           {term.translations.sk?.definition || term.translations.en?.definition || 'Žiadna definícia'}
                         </p>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
                           {term.translations.sk?.categories.map((categoryName, idx) => (
                             <Badge key={idx} variant="default" size="sm">
                               {categoryName}
@@ -496,22 +497,22 @@ return (
                           ))}
                         </div>
                       </div>
-                      <div className="flex items-center space-x-2 ml-4">
+                      <div className="flex items-center space-x-2 sm:ml-4 self-end sm:self-start">
                         <button
                           onClick={() => openEditModal(term)}
-                          className="p-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                          className="p-1.5 sm:p-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                           title="Upraviť"
                         >
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                           </svg>
                         </button>
                         <button
                           onClick={() => handleDeleteTerm(term.id)}
-                          className="p-2 text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                          className="p-1.5 sm:p-2 text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
                           title="Vymazať"
                         >
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                           </svg>
                         </button>
@@ -529,19 +530,20 @@ return (
         {activeTab === 'categories' && (
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
                   Správa kategórií
                 </h2>
                 <Button
                   variant="primary"
+                  size="sm"
                   onClick={() => setShowAddCategoryModal(true)}
-                  className="flex items-center space-x-2"
+                  className="flex items-center justify-center space-x-2"
                 >
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                   </svg>
-                  <span>Pridať kategóriu</span>
+                  <span className="text-sm sm:text-base">Pridať kategóriu</span>
                 </Button>
               </div>
             </CardHeader>
@@ -575,22 +577,22 @@ return (
                     return (
                       <div
                         key={cat.key}
-                        className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700"
+                        className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 gap-3"
                       >
-                        <div className="flex items-center space-x-4 flex-1">
-                          <div className="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                            <svg className="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div className="flex items-start sm:items-center space-x-3 sm:space-x-4 flex-1 min-w-0">
+                          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center shrink-0">
+                            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                             </svg>
                           </div>
-                          <div className="flex-1">
-                            <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100 truncate">
                               {cat.translations?.sk?.name || cat.translations?.en?.name || cat.key}
                             </h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 truncate">
                               Kľúč: {cat.key}
                             </p>
-                            <div className="flex flex-wrap gap-2 mt-1">
+                            <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-1">
                               {Object.entries(cat.translations || {}).map(([lang, trans]) => (
                                 <span key={lang} className="text-xs text-gray-500 dark:text-gray-500 bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
                                   {lang.toUpperCase()}: {trans.name}
@@ -599,26 +601,26 @@ return (
                             </div>
                           </div>
                         </div>
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center justify-between sm:justify-end space-x-3 sm:space-x-4">
                           <Badge variant="primary" size="sm">
                             {count} {count === 1 ? 'termín' : count < 5 ? 'termíny' : 'termínov'}
                           </Badge>
                           <div className="flex items-center space-x-2">
                             <button
                               onClick={() => openEditCategoryModal(cat)}
-                              className="p-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                              className="p-1.5 sm:p-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                               title="Upraviť"
                             >
-                              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                               </svg>
                             </button>
                             <button
                               onClick={() => cat.id && handleDeleteCategory(cat.id)}
-                              className="p-2 text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                              className="p-1.5 sm:p-2 text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
                               title="Vymazať"
                             >
-                              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                               </svg>
                             </button>
