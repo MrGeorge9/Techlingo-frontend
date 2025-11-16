@@ -160,7 +160,7 @@ export function LanguageForm({ language, onSubmit, onCancel }: LanguageFormProps
         </Button>
         <Button
           type="button"
-          variant="outline"
+          variant="secondary"
           onClick={onCancel}
           disabled={isSubmitting}
         >

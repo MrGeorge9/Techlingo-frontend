@@ -288,7 +288,7 @@ export function TermFormDynamic({ term, onSubmit, onCancel }: TermFormProps) {
         <Button type="submit" variant="primary" className="flex-1">
           {term ? 'Uložiť zmeny' : 'Pridať termín'}
         </Button>
-        <Button type="button" variant="outline" onClick={onCancel}>
+        <Button type="button" variant="secondary" onClick={onCancel}>
           Zrušiť
         </Button>
       </div>

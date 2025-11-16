@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import type { LanguageData, CreateLanguageRequest, UpdateLanguageRequest } from '../lib/languageTypes'
-import { getLanguages, createLanguage, updateLanguage, deleteLanguage, toggleLanguageStatus } from '../lib/languageApi'
+import type { LanguageData } from '../lib/languageTypes'
+import { getLanguages, deleteLanguage, toggleLanguageStatus } from '../lib/languageApi'
 import { Button } from './Button'
 import { Badge } from './Badge'
 
@@ -13,7 +13,6 @@ interface LanguageManagementProps {
 }
 
 export function LanguageManagement({
-  onLanguageAdded,
   onLanguageUpdated,
   onLanguageDeleted,
   onOpenAddModal,

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { SearchBar } from '@/components/SearchBar'
 import { DirectionSwitch } from '@/components/DirectionSwitch'
 import { TermCard } from '@/components/TermCard'
@@ -6,7 +6,6 @@ import { TermDetail } from '@/components/TermDetail'
 import { Modal } from '@/components/Modal'
 import { EmptyState } from '@/components/EmptyState'
 import { useDictionary } from '@/features/dictionary/useDictionary'
-import { getLanguages } from '@/lib/languageApi'
 import type { Term } from '@/lib/types'
 import { t, getTermCountText } from '@/lib/i18n'
 import { useUI } from '@/contexts/UIContext'
@@ -24,23 +23,10 @@ export function Home() {
   } = useDictionary()
 
   const [selectedTerm, setSelectedTerm] = useState<Term | null>(null)
-  const [languagesCount, setLanguagesCount] = useState(0)
 
   const handleTermClick = (term: Term) => {
     setSelectedTerm(term)
   }
-
-  useEffect(() => {
-    const loadLanguagesCount = async () => {
-      try {
-        const langs = await getLanguages(true)
-        setLanguagesCount(langs.length)
-      } catch (error) {
-        console.error('Failed to load languages count:', error)
-      }
-    }
-    loadLanguagesCount()
-  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-slate-900 dark:to-gray-900">

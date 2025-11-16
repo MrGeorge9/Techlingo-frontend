@@ -40,7 +40,6 @@ export function AdminDashboard() {
   const [showAddLanguageModal, setShowAddLanguageModal] = useState(false)
   const [showEditLanguageModal, setShowEditLanguageModal] = useState(false)
   const [selectedLanguage, setSelectedLanguage] = useState<LanguageData | null>(null)
-  const [languages, setLanguages] = useState<LanguageData[]>([])
   const [languagesCount, setLanguagesCount] = useState(0)
 
 
@@ -208,16 +207,15 @@ export function AdminDashboard() {
   const loadLanguages = async () => {
     try {
       const langs = await getLanguages(false)
-      setLanguages(langs)
       setLanguagesCount(langs.length)
     } catch (error) {
       console.error('Failed to load languages:', error)
     }
   }
 
-  const handleAddLanguage = async (newLanguage: CreateLanguageRequest) => {
+  const handleAddLanguage = async (newLanguage: CreateLanguageRequest | UpdateLanguageRequest) => {
     try {
-      await createLanguage(newLanguage)
+      await createLanguage(newLanguage as CreateLanguageRequest)
       setShowAddLanguageModal(false)
       setSuccessMessage('Jazyk bol úspešne pridaný!')
       setTimeout(() => setSuccessMessage(''), 3000)
