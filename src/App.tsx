@@ -15,7 +15,7 @@ function Navigation() {
   const location = useLocation()
   const { theme, toggleTheme } = useDarkMode()
   const { uiLang, setUiLang } = useUI()
-  const { isAdmin } = useAuth()
+  const { isAdmin, user, logout } = useAuth()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const isActive = (path: string) => {
@@ -81,6 +81,13 @@ function Navigation() {
 
           {/* Right side controls */}
           <div className="flex items-center space-x-2 sm:space-x-4">
+            {/* Admin user info */}
+            {isAdmin && user && (
+              <div className="hidden md:block text-sm text-gray-600 dark:text-gray-400 mr-2">
+                <span className="font-medium text-gray-900 dark:text-gray-100">{user.email}</span>
+              </div>
+            )}
+
             {/* Language Switch */}
             <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
               <button
@@ -121,6 +128,23 @@ function Navigation() {
                 </svg>
               )}
             </button>
+
+            {/* Logout button for admin */}
+            {isAdmin && (
+              <button
+                onClick={() => {
+                  logout()
+                  window.location.href = '/login'
+                }}
+                className="hidden sm:flex items-center space-x-1 px-3 py-2 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-all duration-200 text-sm font-medium"
+                aria-label="Logout"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span>Odhlásiť sa</span>
+              </button>
+            )}
 
             {/* Mobile menu button */}
             <button
@@ -180,6 +204,21 @@ function Navigation() {
                   Admin
                 </Link>
               )}
+              {isAdmin && (
+                <button
+                  onClick={() => {
+                    logout()
+                    setMobileMenuOpen(false)
+                    window.location.href = '/login'
+                  }}
+                  className="px-4 py-3 rounded-xl text-sm font-semibold bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-all duration-200 flex items-center space-x-2"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                  <span>Odhlásiť sa</span>
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -231,7 +270,10 @@ function App() {
               path="/admin"
               element={
                 <ProtectedRoute requireAdmin>
-                  <AdminDashboard />
+                  <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-slate-900 dark:to-gray-900">
+                    <Navigation />
+                    <AdminDashboard />
+                  </div>
                 </ProtectedRoute>
               }
             />

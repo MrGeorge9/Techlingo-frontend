@@ -74,7 +74,6 @@ export function Login() {
                 label="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@techlingo.sk"
                 required
                 autoComplete="email"
               />
@@ -86,7 +85,6 @@ export function Login() {
                 label="Heslo"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
                 required
                 autoComplete="current-password"
               />
@@ -108,17 +106,6 @@ export function Login() {
               )}
             </Button>
           </form>
-
-          {/* Demo credentials hint */}
-          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-            <p className="text-sm text-blue-800 dark:text-blue-200 font-medium mb-2">
-              Demo prihlasovacie údaje:
-            </p>
-            <p className="text-xs text-blue-700 dark:text-blue-300 font-mono">
-              Email: admin@techlingo.sk<br />
-              Heslo: admin123
-            </p>
-          </div>
         </div>
 
         {/* Back to home */}

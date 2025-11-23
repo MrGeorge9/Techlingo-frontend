@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '@/contexts/AuthContext'
 import { Card, CardHeader, CardContent } from '@/components/Card'
 import { Button } from '@/components/Button'
 import { Modal } from '@/components/Modal'
@@ -19,8 +17,6 @@ import type { Category } from '@/lib/categoryApi'
 import { getCategories, createCategory, updateCategory, deleteCategory } from '@/lib/categoryApi'
 
 export function AdminDashboard() {
-  const { user, logout } = useAuth()
-  const navigate = useNavigate()
 
   // Terms state
   const [showAddModal, setShowAddModal] = useState(false)
@@ -86,11 +82,6 @@ export function AdminDashboard() {
     } finally {
       setLoading(false)
     }
-  }
-
-  const handleLogout = () => {
-    logout()
-    navigate('/login')
   }
 
   const handleAddTerm = async (newTerm: Omit<Term, 'id'>) => {
@@ -248,44 +239,6 @@ export function AdminDashboard() {
 
 return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-slate-900 dark:to-gray-900">
-        {/* Header */}
-        <nav className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700/50 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16 sm:h-20">
-            <div className="flex items-center space-x-2 sm:space-x-4">
-              <img
-                src="/assets/logo-light.png"
-                alt="Tech Lingo"
-                className="h-8 sm:h-10 dark:hidden"
-              />
-              <img
-                src="/assets/logo-dark.png"
-                alt="Tech Lingo"
-                className="h-8 sm:h-10 hidden dark:block"
-              />
-              <div className="flex items-center space-x-2">
-                <span className="text-gray-400">|</span>
-                <span className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100">Admin</span>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-2 sm:space-x-4">
-              <div className="hidden sm:block text-sm text-gray-600 dark:text-gray-400">
-                Prihlásený: <span className="font-medium text-gray-900 dark:text-gray-100">{user?.email}</span>
-              </div>
-              <Button variant="secondary" size="sm" onClick={() => navigate('/')} className="hidden sm:inline-flex">
-                Hlavná stránka
-              </Button>
-              <Button variant="secondary" size="sm" onClick={handleLogout}>
-                Odhlásiť sa
-              </Button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         {/* Success Message */}
         {successMessage && (
@@ -754,7 +707,6 @@ return (
         )}
       </Modal>
 
-    </div>
     </>
   )
 }
